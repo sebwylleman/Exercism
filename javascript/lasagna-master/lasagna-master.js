@@ -10,3 +10,21 @@
  *   ...
  * }
  */
+
+export function cookingStatus(timer) {
+  if (timer === 0) {
+    return 'Lasagna is done.';
+  }
+  if (!timer) {
+    return 'You forgot to set the timer.';
+  }
+  return 'Not done, please wait.';
+}
+
+export function preparationTime(layers, time = 2) {
+  return layers.length * time;
+}
+
+export function quantities(layers) {
+  // finish this
+}
