@@ -271,4 +271,4 @@ normalizeScore(params);
 
 ### Created by
 
-- @junedev
+- @junedev.
