@@ -1,10 +1,10 @@
 // Package weather provides tools to give a current weather forecast for cities in Goblinocus.
 package weather
 
-// CurrentCondition represents a certain condition for the current weather.
+// CurrentCondition represents a local weather condition
 var CurrentCondition string
 
-// CurrentLocation represents the current location at where the weather forecast is made.
+// CurrentLocation represents a the current location.
 var CurrentLocation string
 
 // Forecast returns a weather forecast given a city and a condition.
