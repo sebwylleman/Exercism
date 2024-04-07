@@ -1,7 +1,10 @@
+// Package collatzconjecture provides functions for implementing Collatz' conjecture.
 package collatzconjecture
 
 import "errors"
 
+// CollatzConjecture returns the number of steps the Collatz sequence needs to reach 1.
+// An error is returned if the input is not a positive integer.
 func CollatzConjecture(n int) (int, error) {
 	var numSteps int
 	for {
