@@ -9,7 +9,7 @@ func CollatzConjecture(n int) (int, error) {
 	var numSteps int
 	for {
 		if n < 1 {
-			return 0, errors.New("invalid argument")
+			return 0, errors.New("invalid argument, must be greater than zero")
 		}
 		if n == 1 {
 			return numSteps, nil
