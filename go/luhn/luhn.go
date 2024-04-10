@@ -1,56 +1,38 @@
+// Package luhn contains a checksum formula used to validate a variety of identification numbers, such as credit card numbers and Canadian Social Insurance Numbers.
 package luhn
 
 import (
+	"strings"
 	"unicode"
 )
 
-func Valid(id string) bool {
-	var cardDigits []int
-
-	for _, char := range id {
-		if unicode.IsDigit(char) {
-			// subtracting char's unicode decimal value by 48 (the ASCII decimal representation of '0') to get the conversion in integer
-			cardDigits = append(cardDigits, int(char)-48)
-		} else if char != ' ' {
-			return false
-		}
-	}
-	if len(cardDigits) <= 1 {
+// Valid takes string input and returns a boolean determining whether or not it is a valid identification number according to the Luhn formula.
+func Valid(cardNumber string) bool {
+	cardNumber = strings.ReplaceAll(cardNumber, " ", "")
+	if len(cardNumber) < 2 {
 		return false
 	}
-	return sum(luhnDouble(cardDigits))%10 == 0
-}
 
-func sum(cardDigits []int) int {
-	var total int
-	for _, digit := range cardDigits {
-		total += digit
-	}
-	return total
-}
-
-func luhnDouble(cardDigits []int) []int {
-	var result []int
-	var double int
-	var newDigit int
-	// two pointers
-	left, right := len(cardDigits)-2, len(cardDigits)-1
-
-	for left >= -1 {
-		// when the length of cardDigits is odd, the left pointer's last value will be out of bounds
-		if left == -1 {
-			result = append(result, cardDigits[right])
-		} else {
-			double = cardDigits[left] * 2
-			if double > 9 {
-				newDigit = double - 9
-			} else {
-				newDigit = double
-			}
-			result = append(result, newDigit, cardDigits[right])
+	// If even, luhn's doubling algorithm will proceed on the first character. Otherwise, it will start on the next one.
+	isEven := len(cardNumber)%2 == 0
+	sum, digit := 0, 0
+	for _, character := range cardNumber {
+		if !unicode.IsDigit(character) {
+			return false
 		}
-		left -= 2
-		right -= 2
+		// Convert character (rune) to integer for arithmetic computations. Subtracting the current unicode decimal value by 48 (the ASCII decimal representation of '0')
+		digit = int(character) - 48
+		// If the length is even then we want to perform luhn's double formula.
+		if isEven {
+			digit *= 2
+			if digit > 9 {
+				digit -= 9
+			}
+		}
+		sum += digit
+		// Switch the boolean value process the next digit differently.
+		isEven = !isEven
 	}
-	return result
+	// Returns true to validate the identification number.
+	return sum%10 == 0
 }
