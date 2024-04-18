@@ -21,7 +21,7 @@ func (d DNA) Counts() (Histogram, error) {
 	for _, char := range d {
 		_, ok := h[char]
 		if !ok {
-			return h, errors.New("invalid DNA sequence input string")
+			return nil, errors.New("invalid DNA sequence input string")
 		}
 		h[char]++
 	}
