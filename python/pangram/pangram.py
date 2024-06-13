@@ -1,8 +1,8 @@
-from string import ascii_lowercase
+import string
+
 
 def is_pangram(sentence):
 
-    for char in ascii_lowercase:
-        if char not in sentence.lower():
-            return False     
-    return True  
+    lowercase_sentence = sentence.lower()
+    
+    return all(char in lowercase_sentence for char in string.ascii_lowercase)
