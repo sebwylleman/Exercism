@@ -1,7 +1,7 @@
 import string
 
 
-def is_pangram(sentence):
+def is_pangram(sentence: string) -> bool:
 
     lowercase_sentence = sentence.lower()
     
