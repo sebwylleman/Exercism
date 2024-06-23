@@ -12,6 +12,3 @@ def factors(value):
             remainder //= i
 
     return prime_factors
-
-
-print(factors(60))
