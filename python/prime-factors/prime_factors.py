@@ -2,7 +2,7 @@ def factors(value):
     prime_factors = []
     remainder = value
 
-    # `+ 1` accounts for iterations for `factors(2)`` and `factors(3)`
+    # `+ 1` accounts for iterations for `factors(2)` and `factors(3)`
     for i in range(2, value + 1):
         if remainder == 1:
             break
