@@ -1,14 +1,12 @@
-def factors(value):
+def factors(value: list) -> list:
     prime_factors = []
     remainder = value
 
-    # `+ 1` accounts for iterations for `factors(2)` and `factors(3)`
-    for i in range(2, value + 1):
-        if remainder == 1:
-            break
-
+    i = 2
+    while remainder != 1:
         while remainder % i == 0:
             prime_factors.append(i)
             remainder //= i
+        i += 1
 
     return prime_factors
