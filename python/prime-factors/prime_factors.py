@@ -1,4 +1,4 @@
-def factors(value: list) -> list:
+def factors(value: list[int]) -> list[int]:
     prime_factors = []
     remainder = value
 
